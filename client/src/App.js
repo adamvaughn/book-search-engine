@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
-import ApolloClient from '@apollo/react-hooks';
+import { ApolloProvider } from '@apollo/react-hooks';
+import ApolloClient from 'apollo-boost'
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -20,7 +21,8 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <Router>
+  <ApolloProvider  client ={client}>
+       <Router>
       <>
         <Navbar />
         <Switch>
@@ -30,6 +32,7 @@ function App() {
         </Switch>
       </>
     </Router>
+  </ApolloProvider>
   );
 }
 
