@@ -9,7 +9,7 @@ The user will be able to log in and log out of their account.
 [Heroku](https://book-search-challenge21.herokuapp.com)
 
 ## Screenshot
-<img src="img/screenshot.png>
+<img src="img/screenshot.png">
 
 ## Contact Me
 - Email: adamdvaughn@gmail.com
