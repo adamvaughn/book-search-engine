@@ -16,7 +16,8 @@ const SavedBooks = () => {
   if(!userData?.username) {
     return (
       <h4>
-        You must be logged in to see this page.
+        You need to be logged in to view this page!
+        Please log in!
       </h4>
     );
   }

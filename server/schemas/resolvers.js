@@ -7,7 +7,7 @@ const resolvers = {
         me: async (parent, args, context) => {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
-                .select('password')
+                .select('-__v -password')
                 return userData;
             }
             throw new AuthenticationError('Not logged in');
@@ -23,11 +23,11 @@ const resolvers = {
         login: async (parent, { email, password }) => {
             const user = await User.findOne( { email });
             if (!user) {
-                throw new AuthenticationError('Incorrect email or password entered.')
+                throw new AuthenticationError('Incorrect credentials')
             }
             const correctPw = await user.isCorrectPassword(password);
             if(!correctPw) {
-                throw new AuthenticationError('Incorrect email or password entered.')
+                throw new AuthenticationError('Incorrect credentials')
             }
             const token = signToken(user);
             return { token, user };
@@ -41,7 +41,7 @@ const resolvers = {
                 )
                 return updatedUser;
             }
-            throw new AuthenticationError('You need to be logged in to do that!')
+            throw new AuthenticationError('You need to be logged in!')
         },
         removeBook: async (parent, { bookId }, context) => {
             if (context.user) {
